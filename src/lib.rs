@@ -1,3 +1,5 @@
+pub mod tinymt32;
+
 #[cfg(test)]
 mod tests {
   #[test]
