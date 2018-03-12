@@ -44,3 +44,39 @@ fn tinymt32_should_not_overwrite_the_internal_status() {
 
   assert_eq!(rng.status(), [0x63B07A71, 0x5740A11A, 0x3CFE1DE3, 0x08A80987]);
 }
+
+#[test]
+fn tinymt32_should_pass_check32_test() {
+  let param = tinymt32::Param {
+    mat1: 0x8F7011EE,
+    mat2: 0xFC78FF1F,
+    tmat: 0x3793fdff,
+  };
+  let seed = 1;
+  let mut rng = tinymt32::from_seed(param, seed);
+
+  let mut actual: Vec<u32> = Vec::new();
+  for _i in 0..50 {
+    actual.push(rng.gen());
+  }
+
+  let expected: Vec<u32> = "\
+2545341989  981918433 3715302833 2387538352 3591001365 
+3820442102 2114400566 2196103051 2783359912  764534509 
+ 643179475 1822416315  881558334 4207026366 3690273640 
+3240535687 2921447122 3984931427 4092394160   44209675 
+2188315343 2908663843 1834519336 3774670961 3019990707 
+4065554902 1239765502 4035716197 3412127188  552822483 
+ 161364450  353727785  140085994  149132008 2547770827 
+4064042525 4078297538 2057335507  622384752 2041665899 
+2193913817 1080849512   33160901  662956935  642999063 
+3384709977 1723175122 3866752252  521822317 2292524454
+"
+    .split(|c| c == ' ' || c == '\n')
+    .filter(|num_str| num_str != &"")
+    .map(|num_str| num_str.parse::<u32>().unwrap())
+    .collect();
+  
+  assert_eq!(actual, expected);
+  
+}
