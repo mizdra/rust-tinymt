@@ -11,11 +11,17 @@ pub struct Param {
 }
 
 pub struct Rng {
-  pub param: Param,
-  pub status: [u32; 4],
+  param: Param,
+  status: [u32; 4],
 }
 
 impl Rng {
+  pub fn status(&self) -> [u32; 4] {
+    // Copy a array and return
+    // ref: https://doc.rust-lang.org/std/primitive.array.html
+    self.status
+  }
+
   pub fn next_state(&mut self) {
     let mut x: u32;
     let mut y: u32;
