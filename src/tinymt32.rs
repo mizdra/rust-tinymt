@@ -1,4 +1,5 @@
 const MIN_LOOP: i32 = 8;
+const PRE_LOOP: i32 = 8;
 const TINYMT32_MASK: u32 = 0x7fffffff;
 const TINYMT32_SH0: u32 = 1;
 const TINYMT32_SH1: u32 = 10;
@@ -74,7 +75,11 @@ pub fn from_seed(param: Param, seed: u32) -> Rng {
   }
   let status: [u32; 4] = period_certification(status);
   let mut rng = Rng { param: param, status: status };
-  rng.next_state();
+
+  for _i in 0..PRE_LOOP {
+	  rng.next_state();
+  }
+
   rng
 }
 
