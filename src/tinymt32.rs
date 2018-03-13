@@ -5,12 +5,14 @@ const TINYMT32_SH0: u32 = 1;
 const TINYMT32_SH1: u32 = 10;
 const TINYMT32_SH8: u32 = 8;
 
+#[derive(PartialEq, Debug, Copy, Clone)]
 pub struct Param {
   pub mat1: u32,
   pub mat2: u32,
   pub tmat: u32,
 }
 
+#[derive(Debug, Copy, Clone)]
 pub struct Rng {
   param: Param,
   status: [u32; 4],
