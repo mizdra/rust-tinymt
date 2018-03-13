@@ -1,6 +1,8 @@
 extern crate tinymt;
 
+use tinymt::tinymt32;
 use tinymt::tinymt32::*;
+use std::iter;
 
 const PARAM: Param = Param {
   mat1: 0x8F7011EE,
@@ -78,4 +80,35 @@ fn tinymt32_should_pass_check32_test() {
     .collect();
   
   assert_eq!(actual, expected);
+}
+
+#[test]
+fn readme_example() {
+  let param = tinymt32::Param {
+    mat1: 0x8F7011EE,
+    mat2: 0xFC78FF1F,
+    tmat: 0x3793fdff,
+  };
+  let seed = 1u32;
+  let status: [u32; 4] = [0xCCA24D8, 0x11BA5AD5, 0xF2DAD045, 0xD95DD7B2];
+
+
+  // tinymt32::from_seed(param, seed)
+  let mut rng1 = tinymt32::from_seed(param, seed);
+  assert_eq!(rng1.gen(), 2545341989);
+  assert_eq!(rng1.gen(), 981918433);
+  assert_eq!(
+    iter::repeat(()).map(|()| rng1.gen()).take(2).collect::<Vec<u32>>(),
+    [3715302833, 2387538352],
+  );
+  
+
+  // tinymt32::from_status(param, status)
+  let mut rng2 = tinymt32::from_status(param, status);
+  rng2.next_state();
+  assert_eq!(rng2.temper(), 2545341989);
+  assert_eq!(rng2.gen(), 981918433);
+  assert_eq!(rng2.temper(), 981918433);
+  for _i in 0..2 { rng2.next_state(); }
+  assert_eq!(rng1.status(), rng2.status());
 }
