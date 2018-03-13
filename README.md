@@ -84,6 +84,6 @@ fn main() {
   - [ ] tinymt64_generate_doubleOC
   - [ ] tinymt64_generate_doubleOO
 
-# License
+## License
 - rust-tinymt: [LICENSE](https://raw.githubusercontent.com/mizdra/rust-tinymt/master/LICENSE)
 - [MersenneTwister-Lab/TinyMT](https://github.com/MersenneTwister-Lab/TinyMT): [LICENSE_TINYMT](https://raw.githubusercontent.com/mizdra/rust-tinymt/master/LICENSE_TINYMT) (Original: [LICENSE.txt](https://raw.githubusercontent.com/MersenneTwister-Lab/TinyMT/master/LICENSE.txt))
