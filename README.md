@@ -8,6 +8,22 @@ If you want to use for simulation and numerical analysis and so on,
 **I recommend other library**.
 
 
+## Installation
+
+Add this to your `Cargo.toml`:
+
+```toml
+[dependencies]
+tinymt = { git = "https://github.com/mizdra/rust-tinymt" }
+```
+
+and this to your crate root:
+
+```rust
+extern crate tinymt;
+```
+
+
 ## Usage
 ```rust
 extern crate tinymt;
