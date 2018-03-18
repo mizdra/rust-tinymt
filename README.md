@@ -14,7 +14,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-tinymt = { git = "https://github.com/mizdra/rust-tinymt" }
+tinymt = { git = "https://github.com/mizdra/rust-tinymt", tag = "0.1.0" }
 ```
 
 and this to your crate root:
